@@ -1,0 +1,15 @@
+<%= render "shared/errors", obj: @address_category %>
+
+<div class="row">
+  <div class="well col-lg-8 col-lg-offset-2">
+    <%= form_for @address_category do |f| %>
+      <div class="control-group">
+        <label class="control-label col-lg-4">Name</label>
+        <div class="col-lg-8">
+          <%= f.text_field :name, { class: 'form-control', :autofocus => true } %>
+        </div>
+      </div>
+      <%= f.submit(@address_category.new_record? ? "Create Address Category":"Update Address Category", class: "btn btn-success") %>
+    <% end %>
+  </div>
+</div>

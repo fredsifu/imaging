@@ -1,0 +1,35 @@
+<%= render "shared/errors", obj: @machine %>
+
+<div class="row">
+  <div class="well col-lg-8 col-lg-offset-2">
+    <%= form_for(@machine, html: { multipart: true }) do |f| %>
+      <p>
+        <%= f.label :readable_name %><br>
+        <%= f.text_field :readable_name %>
+      </p>
+      <p>
+        <%= f.label :internal_id %><br>
+        <%= f.text_field :internal_id %>
+      </p>
+      <p>
+        <%= f.label :location %><br>
+        <%= f.text_field :location %>
+      </p>
+      <p>
+        <%= f.label :model %><br>
+        <%= f.text_field :model %>
+      </p>
+      <p>
+        <%= f.label :serial_number %><br>
+        <%= f.text_field :serial_number %>
+      </p>
+      <p>
+        <%= f.label :imaging_type %><br>
+        <%= f.text_field :imaging_type %>
+      </p>
+      <p>
+        <%= f.submit(@machine.new_record? ? "Register Machine":"Update Machine", class: "btn btn-success") %>
+      </p>
+    <% end %>
+  </div>
+</div>

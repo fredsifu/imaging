@@ -6,6 +6,10 @@ $navbar-default-color: $light-orange;
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+.navbar {
+  box-shadow: 0px 2px 5px grey;
+}
+
 #logo {
   margin-top: 10px;
   margin-bottom: 10px;
@@ -25,7 +29,7 @@ $navbar-default-color: $light-orange;
 }
 
 body {
-  padding-top: 80px;
+  padding-top: 90px; // For the navigation bar
 }
 
 .nav_item {
@@ -130,4 +134,16 @@ span.picture {
   border: solid 1px grey;
   background-color: #e5f2ff;
   padding: 2px;
+}
+
+.btn {
+  box-shadow: 0px 2px 2px grey;
+}
+
+.address_category {
+  font-size: 0.8em;
+}
+
+.phone_category {
+  font-size: 0.8em;
 }

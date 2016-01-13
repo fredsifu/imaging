@@ -1,0 +1,51 @@
+<%= render "shared/errors", obj: @address %>
+
+<div class="row">
+  <div class="well col-lg-8 col-lg-offset-2">
+    <%= form_for @address do |f| %>
+      <div class="control-group">
+        <label class="control-label col-lg-4">Address Line 1</label>
+        <div class="col-lg-8">
+          <%= f.text_field :line1, { class: 'form-control', placeholder: 'Street address, P.O. Box, c/o', :autofocus => true } %>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label col-lg-4">Address Line 2</label>
+        <div class="col-lg-8">
+          <%= f.text_field :line2, { class: 'form-control', placeholder: 'Apartment, suite, unit, building, floor, etc.' } %>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label col-lg-4">Country</label>
+        <div class="col-lg-8">
+          <%= f.country_select :country_code, { include_blank: 'Select a country', priority_countries: ["CA", "US", "FR"] }, { class: 'form-control', data: { attribute: "value" } } %>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label col-lg-4">State / Province / Region</label>
+        <div class="col-lg-8">
+          <%= f.text_field :region, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label col-lg-4">City / Town</label>
+        <div class="col-lg-8">
+          <%= f.text_field :city, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label col-lg-4">Zip / Postal Code</label>
+        <div class="col-lg-8">
+          <%= f.text_field :zipcode, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label col-lg-4">Category</label>
+        <div class="col-lg-8">
+          <%= f.collection_select :category, @address_categories, :id, :name, { include_blank: true }, { class: 'form-control', data: { attribute: "value" } } %>
+        </div>
+      </div>
+      <%= f.submit(@address.new_record? ? "Create Address":"Update Address", class: "btn btn-success") %>
+    <% end %>
+  </div>
+</div>

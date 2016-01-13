@@ -1,0 +1,8 @@
+<%= render 'shared/page_title', title: @machine.readable_name %>
+
+<div class="row">
+  <div class="col-lg-12">
+    <h3><%= @machine.internal_id %></h3>
+  </div>
+</div>
+<%= link_to 'Return to machines listing without saving', machines_path, class: "btn btn-warning" %>

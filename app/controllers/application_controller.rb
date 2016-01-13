@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   
   # Available to all controllers, but not views
-  #helper_method :current_user, :logged_in?
+  helper_method :current_user, :logged_in?
   
   def current_user
     # @current_user ||= Allows to cache to prevent hitting the db all the time

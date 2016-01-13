@@ -1,0 +1,23 @@
+<%= render 'shared/page_title', title: 'Address Categories' %>
+
+<div class="row">
+  <div class="col-sm-12">
+    <br />
+    <%= link_to "Add Category", new_address_category_path, class: "btn btn-success" %></p>
+  </div>
+</div>
+  
+<% @address_categories.each do |category| %>
+  <div class="row">
+    <div class="well col-lg-8 col-lg-offset-2">
+      <div class="col-lg-11">
+        <%= category.name %>
+      </div>
+      <div class="col-lg-1">
+        <%= link_to edit_address_category_path(category), class: "btn btn-warning" do %>
+          <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
