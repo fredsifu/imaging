@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   
   resources :machines
   resources :physicians
+  resources :patients
   resources :addresses
   resources :address_categories, except: [:show]
   resources :phones

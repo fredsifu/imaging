@@ -1,0 +1,14 @@
+<%= render 'shared/page_title', title: 'Patients' %>
+
+<div class="row">
+  <div class="col-sm-12">
+    <br />
+    <%= link_to "Add Patient", new_patient_path, class: "btn btn-success" %></p>
+  </div>
+</div>
+
+<div id="patients">
+  <%= render @patients %>
+</div>
+
+<%= will_paginate @patients %>

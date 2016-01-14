@@ -1,0 +1,5 @@
+<div class="patient row">
+  <div class="well col-lg-offset-2 col-lg-8">
+    <%= link_to patient.last_name + ', ' + patient.first_name + ' ('+patient.insurance_number + ')', patient_path(patient) %>
+  </div>
+</div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160112223627) do
+ActiveRecord::Schema.define(version: 20160113204638) do
 
   create_table "address_categories", force: :cascade do |t|
     t.string "name"
@@ -36,6 +36,26 @@ ActiveRecord::Schema.define(version: 20160112223627) do
     t.integer  "imaging_type"
     t.string   "model"
     t.string   "serial_number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "patient_addresses", force: :cascade do |t|
+    t.integer "patient_id"
+    t.integer "address_id"
+  end
+
+  create_table "patient_phones", force: :cascade do |t|
+    t.integer "patient_id"
+    t.integer "phone_id"
+  end
+
+  create_table "patients", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "middle_name"
+    t.string   "insurance_number"
+    t.string   "complementary_insurance_number"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

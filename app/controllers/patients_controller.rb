@@ -1,6 +1,6 @@
 class PatientsController < ApplicationController
   def index
-    @patients = Patient.paginate(page: params[:page], per_page: 5)
+    @patients = Patient.paginate(page: params[:page], per_page: 15).order('last_name ASC')
   end
 
   def new
@@ -40,11 +40,11 @@ class PatientsController < ApplicationController
   def destroy
     Patient.find(params[:id]).destroy
     flash[:success] = "The patient profile was deleted successfully!"
-    redirect_to root_path
+    redirect_to patients_path
   end
 
   private
     def patient_params
-      params.require(:patient).permit(:first_name, :last_name, :insurance_number, address_ids: [], phone_ids: [])
+      params.require(:patient).permit(:first_name, :last_name, :middle_name, :insurance_number, :complementary_insurance_number, address_ids: [], phone_ids: [])
     end
 end
