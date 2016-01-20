@@ -1,21 +1,7 @@
 <%= render 'shared/page_title', title: 'Physicians' %>
 
-<div class="row">
-  <div class="col-sm-4 col-sm-offset-4 center">
-    <%= will_paginate %>
-  </div>
+<div id="physicians">
+  <%= render @physicians %>
 </div>
 
-<% @physicians.each do |physician| %>
-  <div class="row">
-    <div class="col-sm-4 col-sm-offset-4 center">
-      <%= link_to physician.name, physician_path(physician) %>
-    </div>
-  </div>
-<% end %>
-
-<div class="row">
-  <div class="col-sm-4 col-sm-offset-4 center">
-    <%= will_paginate %>
-  </div>
-</div>
+<%= will_paginate @physicians %>

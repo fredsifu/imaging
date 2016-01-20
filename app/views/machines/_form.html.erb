@@ -1,7 +1,7 @@
 <%= render "shared/errors", obj: @machine %>
 
 <div class="row">
-  <div class="well col-lg-8 col-lg-offset-2">
+  <div class="well col-sm-8 col-sm-offset-2">
     <%= form_for(@machine, html: { multipart: true }) do |f| %>
       <p>
         <%= f.label :readable_name %><br>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160113204638) do
+ActiveRecord::Schema.define(version: 20160117025833) do
 
   create_table "address_categories", force: :cascade do |t|
     t.string "name"
@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(version: 20160113204638) do
     t.integer  "category"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "addressable_id"
+    t.string   "addressable_type"
   end
 
   create_table "machines", force: :cascade do |t|
@@ -69,6 +71,8 @@ ActiveRecord::Schema.define(version: 20160113204638) do
     t.integer  "category"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "phonable_id"
+    t.string   "phonable_type"
   end
 
 end

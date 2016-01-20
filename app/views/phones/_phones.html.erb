@@ -1,0 +1,3 @@
+<% phonable.phones.each do |ph| %>
+  <%= render partial: 'phones/phone', locals: { phonable: phonable, phone: ph } %>
+<% end %>

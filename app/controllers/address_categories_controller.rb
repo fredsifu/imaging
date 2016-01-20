@@ -1,4 +1,6 @@
 class AddressCategoriesController < ApplicationController
+  before_action :set_address_category, except: [:index, :new, :create]
+  
   def index
     @address_categories = AddressCategory.all
   end
@@ -19,16 +21,12 @@ class AddressCategoriesController < ApplicationController
   end
   
   def show
-    @address_category = AddressCategory.find(params[:id])
   end
   
   def edit
-    @address_category = AddressCategory.find(params[:id])
   end
   
   def update
-    @address_category = AddressCategory.find(params[:id])
-
     if @address_category.update(address_category_params)
       flash[:success] = "The address category was updated successfully!"
       redirect_to address_categories_path
@@ -38,7 +36,7 @@ class AddressCategoriesController < ApplicationController
   end
   
   def destroy
-    AddressCategory.find(params[:id]).destroy
+    @address_category.destroy
     flash[:success] = "The address category was deleted successfully!"
     redirect_to address_categories_path
   end
@@ -46,5 +44,9 @@ class AddressCategoriesController < ApplicationController
   private
     def address_category_params
       params.require(:address_category).permit(:name)
+    end
+    
+    def set_address_category
+      @address_category = AddressCategory.find(params[:id])
     end
 end

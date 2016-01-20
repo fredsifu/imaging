@@ -1,4 +1,6 @@
 class PhoneCategoriesController < ApplicationController
+  before_action :set_phone_category, except: [:index, :new, :create]
+  
   def index
     @phone_categories = PhoneCategory.all
   end
@@ -19,16 +21,12 @@ class PhoneCategoriesController < ApplicationController
   end
   
   def show
-    @phone_category = PhoneCategory.find(params[:id])
   end
   
   def edit
-    @phone_category = PhoneCategory.find(params[:id])
   end
   
   def update
-    @phone_category = PhoneCategory.find(params[:id])
-
     if @phone_category.update(phone_category_params)
       flash[:success] = "The phone category was updated successfully!"
       redirect_to phone_categories_path
@@ -38,7 +36,7 @@ class PhoneCategoriesController < ApplicationController
   end
   
   def destroy
-    PhoneCategory.find(params[:id]).destroy
+    @phone_category.destroy
     flash[:success] = "The phone category was deleted successfully!"
     redirect_to phone_categories_path
   end
@@ -46,5 +44,9 @@ class PhoneCategoriesController < ApplicationController
   private
     def phone_category_params
       params.require(:phone_category).permit(:name)
+    end
+    
+    def set_phone_category
+      @phone_category = PhoneCategory.find(params[:id])
     end
 end

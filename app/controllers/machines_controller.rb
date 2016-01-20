@@ -1,4 +1,6 @@
 class MachinesController < ApplicationController
+  before_action :set_machine, except: [:index, :new, :create]
+  
   def index
     @machines = Machine.paginate(page: params[:page], per_page: 2)
   end
@@ -19,16 +21,12 @@ class MachinesController < ApplicationController
   end
   
   def show
-    @machine = Machine.find(params[:id])
   end
   
   def edit
-    @machine = Machine.find(params[:id])
   end
   
   def update
-    @machine = Machine.find(params[:id])
-    
     if @machine.update(machine_params)
       flash[:success] = "The machine was updated successfully!"
       redirect_to machine_path(@machine)
@@ -38,7 +36,7 @@ class MachinesController < ApplicationController
   end
   
   def destroy
-    Machine.find(params[:id]).destroy
+    @machine.destroy
     flash[:success] = "The machine was deleted successfully!"
     redirect_to machines_path
   end
@@ -46,5 +44,9 @@ class MachinesController < ApplicationController
   private
     def machine_params
       params.require(:machine).permit(:internal_id, :readable_name, :location, :picture, :imaging_type, :model, :serial_number)
+    end
+    
+    def set_machine
+      @machine = Machine.find(params[:id])
     end
 end

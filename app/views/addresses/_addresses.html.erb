@@ -1,0 +1,3 @@
+<% addressable.addresses.each do |a| %>
+  <%= render partial: 'addresses/address', locals: { addressable: addressable, address: a } %>
+<% end %>

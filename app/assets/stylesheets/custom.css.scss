@@ -78,18 +78,15 @@ h2 {
   letter-spacing: 0.5px;
 }
 
+.right {
+  text-align: right;
+  letter-spacing: 0.5px;
+}
+
 .footer {
   margin-top: 25px;
   border-top: 1px solid #EAEAEA;
   color: #777;
-}
-
-.chef_info {
-  margin-top: 10px;
-}
-
-.gravatar {
-  border-radius: 10px;
 }
 
 .well {
@@ -118,18 +115,7 @@ span.picture {
   }
 }
 
-.show_recipe {
-  margin: 10px 10px 10px 10px;
-}
-
-.ingredient {
-  border-radius: 3px;
-  border: solid 1px grey;
-  background-color: #e5f2ff;
-  padding: 2px;
-}
-
-.style {
+.tag {
   border-radius: 3px;
   border: solid 1px grey;
   background-color: #e5f2ff;
@@ -144,10 +130,34 @@ span.picture {
   font-size: 0.8em;
 }
 
+.address {
+  padding: 0px 10px 5px 10px;
+}
+
 .phone_category {
   font-size: 0.8em;
 }
 
+.phone {
+  padding: 0px 10px 5px 10px;
+}
+
 .pagination {
   display: hidden;
+}
+
+.debug_borders {
+  border: 1px solid red;
+}
+
+.no_wrap {
+  white-space: nowrap;
+}
+
+.imlbl {
+  font-weight: bold;
+}
+
+.panel-heading {
+  cursor: pointer;
 }

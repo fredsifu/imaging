@@ -1,19 +1,26 @@
 Rails.application.routes.draw do
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   root 'pages#home'
   get "/home", to: "pages#home"
-  
   get "/dev", to: "pages#dev"
   
   resources :machines
-  resources :physicians
-  resources :patients
-  resources :addresses
+  
+  resources :physicians do
+    resources :addresses, module: :physicians, as: :addresses
+    resources :phones, module: :physicians, as: :phones
+  end
+  
+  resources :patients do
+    resources :addresses, module: :patients, as: :addresses
+    resources :phones, module: :patients, as: :phones
+  end
+  
   resources :address_categories, except: [:show]
-  resources :phones
   resources :phone_categories, except: [:show]
 
   # Example of regular route:
