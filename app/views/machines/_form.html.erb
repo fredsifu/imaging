@@ -2,34 +2,56 @@
 
 <div class="row">
   <div class="well col-sm-8 col-sm-offset-2">
-    <%= form_for(@machine, html: { multipart: true }) do |f| %>
-      <p>
-        <%= f.label :readable_name %><br>
-        <%= f.text_field :readable_name %>
-      </p>
-      <p>
-        <%= f.label :internal_id %><br>
-        <%= f.text_field :internal_id %>
-      </p>
-      <p>
-        <%= f.label :location %><br>
-        <%= f.text_field :location %>
-      </p>
-      <p>
-        <%= f.label :model %><br>
-        <%= f.text_field :model %>
-      </p>
-      <p>
-        <%= f.label :serial_number %><br>
-        <%= f.text_field :serial_number %>
-      </p>
-      <p>
-        <%= f.label :imaging_type %><br>
-        <%= f.text_field :imaging_type %>
-      </p>
-      <p>
-        <%= f.submit(@machine.new_record? ? "Register Machine":"Update Machine", class: "btn btn-success") %>
-      </p>
+    <%= form_for @machine,html: { class: 'form-horizontal' } do |f| %>
+      <div class="control-group">
+        <div class="col-sm-4">
+          <%= f.label :readable_name, class: 'control-label' %>
+        </div>
+        <div class="col-sm-8">
+          <%= f.text_field :readable_name, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="control-group">
+        <div class="col-sm-4">
+          <%= f.label :internal_id, class: 'control-label' %>
+        </div>
+        <div class="col-sm-8">
+          <%= f.text_field :internal_id, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="control-group">
+        <div class="col-sm-4">
+          <%= f.label :location, class: 'control-label' %>
+        </div>
+        <div class="col-sm-8">
+          <%= f.text_field :location, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="control-group">
+        <div class="col-sm-4">
+          <%= f.label :model, class: 'control-label' %>
+        </div>
+        <div class="col-sm-8">
+          <%= f.text_field :model, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="control-group">
+        <div class="col-sm-4">
+          <%= f.label :serial_number, class: 'control-label' %>
+        </div>
+        <div class="col-sm-8">
+          <%= f.text_field :serial_number, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="control-group">
+        <div class="col-sm-4">
+          <%= f.label :imaging_type, class: 'control-label' %>
+        </div>
+        <div class="col-sm-8">
+          <%= f.text_field :imaging_type, class: 'form-control' %>
+        </div>
+      </div>
+      <%= f.submit(@machine.new_record? ? "Register Machine":"Update Machine", class: "btn btn-success") %>
     <% end %>
   </div>
 </div>

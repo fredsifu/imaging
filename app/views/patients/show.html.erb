@@ -50,10 +50,10 @@
       <div class="panel panel-default">
         <div class="panel-heading" role="tab" id="headingOne" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
 
-          <h4 class="panel-title">Contact Information</h4>
+          <h4 class="panel-title">Contact Information <i class="indicator glyphicon glyphicon-chevron-down pull-right"></i></h4>
 
         </div>
-        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+        <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
           <div class="panel-body">
             
             <div>
@@ -95,6 +95,7 @@
   <div>
     <h5>Actives</h5>
   </div>
+  <%= render @prescriptions %>
   <div>
     <h5>Completed or cancelled</h5>
   </div>
@@ -103,6 +104,11 @@
 
 <%= link_to 'Return patients listing', patients_path, class: 'btn btn-warning' %>
 
-<script>
-    
-</script>
+<% content_for :head do %>
+  <script type="text/javascript">
+    $(document).on('page:change', function() {
+      $('#accordion').on('hidden.bs.collapse', toggleChevron);
+      $('#accordion').on('shown.bs.collapse', toggleChevron);
+    });
+  </script>
+<% end %>

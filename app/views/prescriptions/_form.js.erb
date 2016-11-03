@@ -1,0 +1,63 @@
+$(document).on('page:load', function() {
+
+  alert('MORMAMMOAMA');
+
+  <% if @prescription.new_record? %>
+  $('#patientsearch').show();
+  $('#patientinfo').hide();
+  <% else %>
+  $('#patientsearch').hide();
+  $('#patientinfo').show();
+  <% end %>
+
+  var kNoResults = "No patients found.";
+  
+  $("#patientsearchinput").autocomplete({
+    minLength: 2,
+    source: "/patients/autocomplete.json?term=" + $('#patientsearchinput').val(),
+    select: function (event, suggestion) {
+      if (suggestion.item.label === kNoResults) {
+        event.preventDefault();
+      }
+      else {
+        onSelectPatient(event, suggestion);
+      }
+    },
+    focus: function (event, suggestion) {
+      if (suggestion.item.label === kNoResults) {
+        event.preventDefault();
+      }
+    },
+    response: function (event, suggestions) {
+      if (suggestions.content.length === 0) {
+        var noResult = { value: event.target.value, label: kNoResults };
+        suggestions.content.push(noResult);
+      }
+      else {
+        // Autocomplete needs variables named 'label' and 'value' to display suggestions properly, we add them here
+        $.each(suggestions.content, function (i, obj) {
+          obj.label = obj.last_name + ', ' + obj.first_name + ' (' + obj.insurance_number + ')'; // whatever appears in the suggestions box
+          obj.value = obj.last_name + ', ' + obj.first_name + ' (' + obj.insurance_number + ')'; // whatever appears in the input field
+        });
+      }
+    }
+  });
+  
+  function onSelectPatient(event, suggestion) {
+    $('#prescription_patient_id').val(suggestion.item.id);
+    $('#patientsearch').hide();
+    $('#patientname').html(suggestion.item.last_name + ', ' + suggestion.item.first_name);
+    $('#patientinsurancenumber').html(suggestion.item.insurance_number);
+    $('#patientinfo').show();
+  }
+  
+  function changePatientSearch() {
+    $('prescriptionpatientid').val('');
+    $('#patientinfo').hide();
+    $('#patientsearchinput').val('');
+    $('#patientsearch').show();
+    $('#patientsearchinput').focus();
+  }
+
+  $('#changepatient').click(changePatientSearch);
+});

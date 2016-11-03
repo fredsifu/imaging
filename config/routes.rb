@@ -7,21 +7,41 @@ Rails.application.routes.draw do
   root 'pages#home'
   get "/home", to: "pages#home"
   get "/dev", to: "pages#dev"
+  get "/medbot", to: "pages#medbot"
   
   resources :machines
   
+  # Physicians
   resources :physicians do
     resources :addresses, module: :physicians, as: :addresses
     resources :phones, module: :physicians, as: :phones
+    
+    resources :prescriptions, except: [:destroy] do
+      get 'search', on: :collection
+    end
+    member do
+      get 'prescribe'
+    end
   end
-  
+  resources :specialties
+
+  # Patients
   resources :patients do
     resources :addresses, module: :patients, as: :addresses
     resources :phones, module: :patients, as: :phones
+
+    resources :prescriptions, except: [:destroy] do
+      get 'search', on: :collection
+    end
+    
+    get 'search', on: :collection
+    get 'autocomplete', on: :collection
   end
   
   resources :address_categories, except: [:show]
   resources :phone_categories, except: [:show]
+  resources :prescription_categories, except: [:show]
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

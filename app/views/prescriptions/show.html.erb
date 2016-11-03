@@ -1,0 +1,33 @@
+<%= render 'shared/page_title', title: 'Prescription' %>
+
+<div class="row">
+  <div class="well col-sm-4 col-sm-offset-2">
+    <h2>Physician</h2>
+    <div id="physicianinfo" class="col-sm-12">
+      <div class="col-sm-4 imlbl">Name:</div>
+      <div class="col-sm-8"><%= @physician.last_name + ', ' + @physician.first_name %></div>
+      <div class="col-sm-4 imlbl">Permit number:</div>
+      <div class="col-sm-8"><%= @physician.permit_number %></div>
+    </div>
+  </div>
+
+  <div class="well col-sm-4">
+    <h2>Patient</h2>
+    <div id="patientinfo" class="col-sm-12">
+      <div class="col-sm-4 imlbl">Name:</div>
+      <div class="col-sm-8" id="patientname"><%= @patient.last_name + ", " + @patient.first_name if @patient %></div>
+      <div class="col-sm-4 imlbl">Insurance number:</div>
+      <div class="col-sm-8" id="patientinsurancenumber"><%= @patient.insurance_number if @patient %></div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="well col-sm-8 col-sm-offset-2">
+    <h2>Clinical information</h2>
+    <%= @prescription.clinical_information %>
+  </div>
+</div>
+
+<%= link_to "Return to physician's page", physician_path(@physician), class: 'btn btn-success' %>
+<%= link_to "Return to patient's page", patient_path(@patient), class: 'btn btn-success' %>

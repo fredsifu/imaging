@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160117025833) do
+ActiveRecord::Schema.define(version: 20160203194128) do
 
   create_table "address_categories", force: :cascade do |t|
     t.string "name"
@@ -60,6 +60,8 @@ ActiveRecord::Schema.define(version: 20160117025833) do
     t.string   "complementary_insurance_number"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.date     "birthdate"
+    t.string   "gender"
   end
 
   create_table "phone_categories", force: :cascade do |t|
@@ -73,6 +75,48 @@ ActiveRecord::Schema.define(version: 20160117025833) do
     t.datetime "updated_at"
     t.integer  "phonable_id"
     t.string   "phonable_type"
+  end
+
+  create_table "physician_addresses", force: :cascade do |t|
+    t.integer "physician_id"
+    t.integer "address_id"
+  end
+
+  create_table "physician_phones", force: :cascade do |t|
+    t.integer "physician_id"
+    t.integer "phone_id"
+  end
+
+  create_table "physician_specialties", force: :cascade do |t|
+    t.integer "physician_id"
+    t.integer "specialty_id"
+  end
+
+  create_table "physicians", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "middle_name"
+    t.string   "gender"
+    t.string   "permit_number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "prescription_categories", force: :cascade do |t|
+    t.string "name"
+  end
+
+  create_table "prescriptions", force: :cascade do |t|
+    t.integer  "physician_id"
+    t.integer  "patient_id"
+    t.string   "clinical_information"
+    t.integer  "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "specialties", force: :cascade do |t|
+    t.string "name"
   end
 
 end

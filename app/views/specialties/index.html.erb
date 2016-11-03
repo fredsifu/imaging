@@ -1,0 +1,14 @@
+<%= render 'shared/page_title', title: 'Specialties' %>
+
+<div class="row">
+  <div class="col-sm-12">
+    <br />
+    <%= link_to "Add Specialty", new_specialty_path, class: "btn btn-success" %></p>
+  </div>
+</div>
+
+<div id="specialties">
+  <%= render @specialties %>
+</div>
+
+<%= will_paginate @specialties %>

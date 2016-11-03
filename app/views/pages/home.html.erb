@@ -6,14 +6,31 @@
 </div>
 
 <div class="row">
-  <div class="col-sm-6">
-    <h3 class="midrow">View imaging service providers</h3>
-    <h2 class="left">Browse and view imaging service providers in your area</h2>
-    <p><%= link_to "Browse medical imaging service providers", '', class: "btn btn-warning btn-small" %></p>
+  <div class="col-sm-6 roundbox">
+    <center>
+      <h3 class="midrow">Log in as Physician</h3>
+      <i class="fa fa-user-md fa-6"></i>
+      <h2>Prescribe imaging services to your patients</h2>
+      <p><%= link_to "Sign in as Physician", physicians_path, class: "btn btn-warning btn-small" %></p>
+    </center>
   </div>
-  <div class="col-sm-6">
-    <h3 class="midrow">Sign in to your account</h3>
-    <h2 class="left">Review your prescriptions and your range</h2>
-    <p><%= link_to "Log in to your account", '', class: "btn btn-warning btn-small" %></p>
+  <div class="col-sm-6 roundbox">
+    <center>
+      <h3 class="midrow">Log in as Patient</h3>
+      <i class="fa fa-user fa-6"></i>
+      <h2>View your prescriptions and define the acceptable travel range to fulfill them</h2>
+      <p><%= link_to "Sign in as Patient", patients_path, class: "btn btn-warning btn-small" %></p>
+    </center>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-6 col-sm-offset-3 roundbox">
+    <center>
+      <h3 class="midrow">View imaging service providers</h3>
+      <i class="fa fa-hospital-o fa-6"></i>
+      <h2>Browse and view imaging service providers in your area</h2>
+      <p><%= link_to "Browse medical imaging service providers", '', class: "btn btn-warning btn-small" %></p>
+    </center>
   </div>
 </div>

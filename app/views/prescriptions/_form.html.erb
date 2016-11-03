@@ -1,0 +1,112 @@
+<%= render "shared/errors", obj: @prescription %>
+
+<div class="row">
+  <div class="well col-sm-4 col-sm-offset-2">
+    <h2>Physician</h2>
+    <div id="physicianinfo" class="col-sm-12">
+      <div class="col-sm-4 imlbl">Name:</div>
+      <div class="col-sm-8"><%= @physician.last_name + ', ' + @physician.first_name %></div>
+      <div class="col-sm-4 imlbl">Permit number:</div>
+      <div class="col-sm-8"><%= @physician.permit_number %></div>
+    </div>
+  </div>
+
+  <div class="well col-sm-4">
+    <h2>Patient</h2>
+    <div id="patientsearch" class="col-sm-12">
+      <%= text_field_tag :query, params[:query], id: 'patientsearchinput', class: 'form-control', placeholder: 'Patient\'s name or insurance number' %>
+    </div>
+    
+    <div id="patientinfo" class="col-sm-12">
+      <div class="col-sm-4 imlbl">Name:</div>
+      <div class="col-sm-8" id="patientname"><%= @patient.last_name + ", " + @patient.first_name if @patient %></div>
+      <div class="col-sm-4 imlbl">Insurance number:</div>
+      <div class="col-sm-8" id="patientinsurancenumber"><%= @patient.insurance_number if @patient %></div>
+      <input type="button" name="changepatient" id="changepatient" value="Change Patient" class="btn btn-success" />
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="well col-sm-8 col-sm-offset-2">
+    <%= form_for [@physician, @prescription], html: { class: 'form-horizontal' } do |f| %>
+      <%= f.hidden_field :physician_id, value: @physician.id %>
+      <%= f.hidden_field :patient_id, value: @patient ? @patient.id : '' %>
+
+      <div class="control-group">
+        <div class="col-sm-4">
+          <%= f.label :clinical_information, { class: 'control-label' } %>
+        </div>
+        <div class="col-sm-8">
+          <%= f.text_area :clinical_information, { class: 'form-control' } %>
+        </div>
+      </div>
+      <%= f.submit(@prescription.new_record? ? "Emit Prescription":"Update Prescription", class: "btn btn-success") %>
+    <% end %>
+  </div>
+</div>
+
+<%# content_for :head do %>
+  <script type="text/javascript">
+    $(document).on('page:change', function() {
+      <% if @prescription.new_record? %>
+      $('#patientsearch').show();
+      $('#patientinfo').hide();
+      <% else %>
+      $('#patientsearch').hide();
+      $('#patientinfo').show();
+      <% end %>
+
+      var kNoResults = "No patients found.";
+      
+      $("#patientsearchinput").autocomplete({
+        minLength: 2,
+        source: "/patients/autocomplete.json?term=" + $('#patientsearchinput').val(),
+        select: function (event, suggestion) {
+          if (suggestion.item.label === kNoResults) {
+            event.preventDefault();
+          }
+          else {
+            onSelectPatient(event, suggestion);
+          }
+        },
+        focus: function (event, suggestion) {
+          if (suggestion.item.label === kNoResults) {
+            event.preventDefault();
+          }
+        },
+        response: function (event, suggestions) {
+          if (suggestions.content.length === 0) {
+            var noResult = { value: event.target.value, label: kNoResults };
+            suggestions.content.push(noResult);
+          }
+          else {
+            // Autocomplete needs variables named 'label' and 'value' to display suggestions properly, we add them here
+            $.each(suggestions.content, function (i, obj) {
+              obj.label = obj.last_name + ', ' + obj.first_name + ' (' + obj.insurance_number + ')'; // whatever appears in the suggestions box
+              obj.value = obj.last_name + ', ' + obj.first_name + ' (' + obj.insurance_number + ')'; // whatever appears in the input field
+            });
+          }
+        }
+      });
+      
+      function onSelectPatient(event, suggestion) {
+        $('#prescription_patient_id').val(suggestion.item.id);
+        $('#patientsearch').hide();
+        $('#patientname').html(suggestion.item.last_name + ', ' + suggestion.item.first_name);
+        $('#patientinsurancenumber').html(suggestion.item.insurance_number);
+        $('#patientinfo').show();
+      }
+      
+      function changePatientSearch() {
+        $('prescriptionpatientid').val('');
+        $('#patientinfo').hide();
+        $('#patientsearchinput').val('');
+        $('#patientsearch').show();
+        $('#patientsearchinput').focus();
+      }
+    
+      $('#changepatient').click(changePatientSearch);
+    });
+  </script>
+<%# end %>

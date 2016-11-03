@@ -1,0 +1,7 @@
+<%= render 'shared/page_title', title: 'Prescriptions' %>
+
+<div id="prescriptions">
+  <%= render @prescriptions %>
+</div>
+
+<%= will_paginate @prescriptions %>

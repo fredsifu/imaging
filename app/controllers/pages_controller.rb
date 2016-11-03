@@ -5,4 +5,7 @@ class PagesController < ApplicationController
   
   def dev
   end
+  
+  def medbot
+  end
 end

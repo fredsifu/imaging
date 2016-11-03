@@ -1,0 +1,17 @@
+<%= render "shared/errors", obj: @prescription_category %>
+
+<div class="row">
+  <div class="well col-sm-8 col-sm-offset-2">
+    <%= form_for @prescription_category, html: { class: 'form-horizontal' } do |f| %>
+      <div class="control-group">
+        <div class="col-sm-4">
+          <%= f.label :name, { class: 'control-label' } %>
+        </div>
+        <div class="col-sm-8">
+          <%= f.text_field :name, { class: 'form-control', :autofocus => true } %>
+        </div>
+      </div>
+      <%= f.submit(@prescription_category.new_record? ? "Create Prescription Category":"Update Prescription Category", class: "btn btn-success") %>
+    <% end %>
+  </div>
+</div>

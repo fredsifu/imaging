@@ -1,4 +1,4 @@
-class Physician::AddressesController < AddressesController
+class Physicians::AddressesController < AddressesController
   before_action :set_addressable
   
   private

@@ -11,24 +11,10 @@
 // about supported directives.
 //
 //= require jquery
-//= require bootstrap-sprockets
 //= require jquery_ujs
+//= require jquery-ui/autocomplete
+//= require bootstrap-sprockets
 //= require turbolinks
+//= require_tree ./templates
 //= require_tree .
 
-
-// This function is used to allow for endless scrolling (easier browsing on mobile devices)
-
-var loadingThreshold = 50;
-var loadingWaitMsg = "Loading...";
-
-$(document).ready(function () {
-  $(window).scroll(function () {
-    var url = $('.pagination .next').find('a:first').attr('href');
-
-    if (url && $(window).scrollTop() > $(document).height() - $(window).height() - loadingThreshold) {
-      $('.pagination').text(loadingWaitMsg);
-      $.getScript(url);
-    }
-  });
-});

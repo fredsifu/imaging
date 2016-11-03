@@ -1,0 +1,2 @@
+$('#physicians').append('<%= j render(@physicians) %>');
+$('div.pagination').replaceWith('<%= j will_paginate(@physicians) if @physicians.next_page %>');

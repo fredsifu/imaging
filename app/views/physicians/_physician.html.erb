@@ -1,5 +1,5 @@
 <div class="physician row">
   <div class="well col-sm-offset-2 col-sm-8">
-    <%= link_to physician.last_name + ', ' + physician.first_name, physician_path(physician) %>
+    <%= link_to physician.last_name + ', ' + physician.first_name + ' (' + physician.permit_number + ')', physician_path(physician) %>
   </div>
 </div>
